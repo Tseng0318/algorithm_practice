@@ -5,10 +5,22 @@ Segment = namedtuple('Segment', 'start end')
 
 def optimal_points(segments):
     points = []
-    # write your code here
+    
+    # 1. sort segments by their END point
+    segments = sorted(segments, key=lambda x: x[1])
+    
+    # track the most recently placed dot; start below any possible coordinate
+    last_point = float('-inf')
+    
     for s in segments:
-        points.append(s.start)
-        points.append(s.end)
+        # 2. is this segment NOT yet covered by last_point?
+        #    (it's uncovered when the segment starts strictly after the dot)
+        if s[0]>last_point:
+            # 3. need a new dot — place it at the segment's END for max reach
+            points.append(s[1])
+            # 4. update last_point to the dot you just placed
+            last_point = s[1]
+    
     return points
 
 
