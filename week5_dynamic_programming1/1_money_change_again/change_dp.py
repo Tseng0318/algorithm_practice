@@ -9,7 +9,7 @@ def change(money):
         for c in coins:
             if m >= c:                 # can we actually use coin c?
                 # what's the cost of using c, then optimally making (m - c)?
-                candidate = 1+min_coins[m-c]
+                candidate = 1 + min_coins[m-c]
                 # keep the best option seen so far
                 if candidate < min_coins[m]:
                     min_coins[m] = candidate
